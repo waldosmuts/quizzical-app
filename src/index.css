@@ -1,13 +1,157 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.start,
+.options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.start--header,
+.start--description {
+  color: #293264;
+  margin: 0;
+}
+
+.start--header {
+  font-family: "Karla", sans-serif;
+  font-size: 31px;
+}
+
+.start--description {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 7px;
+}
+
+.start--button,
+.options--button {
+  background: #293264;
+  color: #f5f7fb;
+  margin-top: 30px;
+  padding: 16px 30px;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.start--button:focus {
+  outline: none;
+}
+
+.options--label {
+  font-family: "Karla", sans-serif;
+  font-size: 20px;
+  color: #293264;
+  margin-top: 30px;
+}
+
+.options--select {
+  width: 450px;
+  padding: 10px 20px;
+  margin-top: 12px;
+  border-radius: 15px;
+  border: 2px solid #293264;
+  color: #293264;
+  font-family: Karla, sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.quiz {
+  padding: 40px 75px 25px;
+}
+
+.item--question {
+  font-family: Karla, sans-serif;
+  font-size: 16px;
+  color: #293264;
+  margin: 0;
+}
+
+.item--form {
+  display: flex;
+  grid-gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.item--answer {
+  border: 1px solid #4d5b9e;
+  border-radius: 8px;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 10.24px;
+  padding: 4px 15px;
+  color: #293264;
+  cursor: pointer;
+}
+
+.item--answer > input {
+  display: none;
+}
+
+.item--selected {
+  background: #d6dbf5;
+}
+
+.item--correct {
+  background: #94d7a2;
+}
+
+.item--wrong {
+  background: #f8bcbc;
+}
+
+.divider {
+  width: 100%;
+  height: 0px;
+  border: 1px solid #dbdef0;
+  margin: 15px 0;
+}
+
+.blob {
+  position: fixed;
+  animation: roll 10s linear infinite;
+  z-index: -9999;
+}
+
+.blob:nth-of-type(1) {
+  top: -200px;
+  right: -180px;
+}
+
+.blob:nth-of-type(2) {
+  bottom: -120px;
+  left: -150px;
+}
+
+@keyframes roll {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
 }
