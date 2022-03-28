@@ -8,26 +8,25 @@ export default function Quiz(props) {
     const [quizCheck, setQuizCheck] = useState(false)
     const [gameScore, setGameScore] = useState(0)
 
-    async function getQuestions() {
-        const url = `https://opentdb.com/api.php?amount=5&type=multiple${props.options.category === 1 ? "" : `&category=${props.options.category}`}${props.options.difficulty === "any" ? "" : `&difficulty=${props.options.difficulty}`}`
-        const res = await fetch(url)
-        const data = await res.json()
-        setQuestions(data.results.map(item => {
-            const questionObject = {
-                id: nanoid(),
-                question: item.question,
-                options: item.incorrect_answers.map(item => ({ id: nanoid(), value: item })),
-                answer: { id: nanoid(), value: item.correct_answer }
-            }
-            const rand = Math.floor(Math.random() * 3)
-            questionObject.options.splice(rand, 0, questionObject.answer)
-            return questionObject
-        }))
-    }
-
     useEffect(() => {
+        async function getQuestions() {
+            const url = `https://opentdb.com/api.php?amount=5&type=multiple${props.options.category === 1 ? "" : `&category=${props.options.category}`}${props.options.difficulty === "any" ? "" : `&difficulty=${props.options.difficulty}`}`
+            const res = await fetch(url)
+            const data = await res.json()
+            setQuestions(data.results.map(item => {
+                const questionObject = {
+                    id: nanoid(),
+                    question: item.question,
+                    options: item.incorrect_answers.map(item => ({ id: nanoid(), value: item })),
+                    answer: { id: nanoid(), value: item.correct_answer }
+                }
+                const rand = Math.floor(Math.random() * 3)
+                questionObject.options.splice(rand, 0, questionObject.answer)
+                return questionObject
+            }))
+        }
         getQuestions()
-    }, [])
+    }, [props.options.category, props.options.difficulty])
 
     useEffect(() => {
         setQuizData(() => {
